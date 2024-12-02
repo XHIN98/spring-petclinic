@@ -33,7 +33,7 @@ pipeline {
             sh """
             docker build -t xoodongxoo/spring-petclinic:$BUILD_NUMBER .
             docker tag xoodongxoo/spring-petclinic:$BUILD_NUMBER xoodongxoo/spring-petclinic:latest
-            """
+              """
           }
       }
     }
