@@ -17,6 +17,5 @@ pipeline {
             git url: 'httls://github.com/XHIN98/spring-petclinic.git', branch: 'main'
         }
     }
- 
   }
 }
