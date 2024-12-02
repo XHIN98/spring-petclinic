@@ -6,7 +6,7 @@ pipeline {
   }
   // Docker Hub 접속 정보 (환경설정 해주기)
   environment{
-    DOCKER_CREDENTIALS = credentials('dockerCredentials')
+    DOCKERHUB_CREDENTIALS = credentials('dockerCredentials')
   }
   
   // 1. 코드 복제
