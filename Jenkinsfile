@@ -4,6 +4,11 @@ pipeline {
     jdk 'jdk17'
     maven 'M3'
   }
+  // Docker Hub 접속 정보 (환경설정 해주기)
+  environment{
+    DOCKER_CREDENTIALS = credentials('dockerCredentials')
+  }
+  
   // 1. 코드 복제
   // 2. 빌드
   // 3. 도커 이미지 만들기
@@ -31,6 +36,12 @@ pipeline {
             """
           }
       }
+    }
+    stage('Docker Image Push'){
+      sh """
+      echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+      docker push s4616/spring-petclinic:latest
+      """
     }
   }
 }
