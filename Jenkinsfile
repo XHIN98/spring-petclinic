@@ -45,5 +45,34 @@ pipeline {
         """
       }
     }
+    stage('Remove Docker Image'){
+      steps{
+        docker rmi xoodongxoo/spring-petclinic:$BUILD_NUMBER
+        docker rmi xoodongxoo/spring-petclinic:latest
+      }
+    }
+    stage('Docker Container'){
+      steps{
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'target', 
+        transfers: [sshTransfer(cleanRemote: false, 
+        excludes: '', 
+        execCommand: '''
+        docker rm -f $(docker ps -aq)
+        docker rmi $(docker images -q)
+        docerk run -d -p 80:8080 --name spring-petclinic xoodongxoo/spring-petclinic:latest
+        ''', 
+        execTimeout: 120000, flatten: false, 
+        makeEmptyDirs: false, 
+        noDefaultExcludes: false, 
+        patternSeparator: '[, ]+', 
+        remoteDirectory: '', 
+        remoteDirectorySDF: false, 
+        removePrefix: '', 
+        sourceFiles: '')], 
+        usePromotionTimestamp: false, 
+        useWorkspaceInPromotion: false, 
+        verbose: false)])
+      }
+    }
   }
 }
