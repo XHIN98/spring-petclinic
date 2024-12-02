@@ -47,8 +47,10 @@ pipeline {
     }
     stage('Remove Docker Image'){
       steps{
+        sh """
         docker rmi xoodongxoo/spring-petclinic:$BUILD_NUMBER
         docker rmi xoodongxoo/spring-petclinic:latest
+        """
       }
     }
     stage('Docker Container'){
