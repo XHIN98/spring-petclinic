@@ -14,7 +14,7 @@ pipeline {
         steps{
           //Github에서 Jenkins로 소스코드 복제
             echo 'Git Clone'
-            git url: 'httls://github.com/XHIN98/spring-petclinic.git', branch: 'main'
+            git url: 'https://github.com/XHIN98/spring-petclinic.git', branch: 'main'
         }
     }
   }
