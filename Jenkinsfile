@@ -17,13 +17,6 @@ pipeline {
             git url: 'httls://github.com/XHIN98/spring-petclinic.git', branch: 'main'
         }
     }
-    stage('Maven BUILD'){
-    }
-    stage('Docker Image'){
-    }
-    stage('Docker Image Push'){
-    }
-    stage('SSH Publish'){
-    }
+ 
   }
 }
