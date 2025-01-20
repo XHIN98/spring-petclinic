@@ -64,7 +64,7 @@ pipeline {
         """
       }
     }
-    //s3에 APPsepc.yml Upload
+    //6. s3에 APPsepc.yml Upload
     stage('Upload to S3') {
       steps{
         echo "Upload to S3"
