@@ -33,10 +33,12 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         echo 'Docker Image build'
+        dir("${env.WORKSPACE}"){
         sh """
         docker build -t xoodongxoo/spring-petclinic:$BUILD_NUMBER .
         docker tag xoodongxoo/spring-petclinic:$BUILD_NUMBER xoodongxoo/spring-petclinic:latest
         """
+        }
       }
     }
 
